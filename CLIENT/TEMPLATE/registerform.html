@@ -1,0 +1,50 @@
+<html>
+    <title>
+        Registration form
+    </title>
+    <head></head>
+    <body>
+        <h1>REGISTRATION FORM</h1>
+        <form>
+            <label for="">username</label>
+            <input type="text" name="First Name"class="user" id="username"placeholder="firstname" > <br><br>
+            <input type="text" name="Last Name"class="user" id="username" placeholder="lastname"> <br><br>
+            <input type="password"name="password" id="passwoed" placeholder="password"> <br><br>
+            <button>sumbit</button>
+        </form>
+    </body>
+</html>
+<head>
+    <title>input box</title>
+</head>
+<body>
+    <div >
+        <input type="text" placeholder="enter your name" id="name1">
+        <input type="text" placeholder="enter your email" id="email">
+
+        <button onclick="submit()" >submit</button>
+
+    </div>
+
+    <script>
+
+
+
+        function submit(){
+
+            console.log("clicked");
+            
+            let name=document.getElementById("name1").value;
+            let email=document.getElementById("email").value;
+
+            console.log(name);
+            console.log(email);
+            
+        }
+
+
+
+
+    </script>
+</body>
+</html>
