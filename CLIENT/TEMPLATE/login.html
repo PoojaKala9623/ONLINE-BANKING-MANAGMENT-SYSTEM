@@ -1,0 +1,23 @@
+<html lang="en">
+    <head><title>loginpage</title>
+    <link rel="stylesheet" href="form1.css">
+    </head><body>
+<h1>LOGIN </h1>
+<div>
+    <label>username
+    </label>
+<input type="text" class="user" name="user" placeholder="username" id="name1"><br>
+<label>password
+</label>
+<input type="text" class="pass" name="pass" placeholder="password" id="passw" ><br>
+<button onclick="submit()">submit</button></div>
+<script>
+    function submit(){
+        console.log("clicked")
+        let name=document.getElementById("name1").value;
+        let password=document.getElementById("passw").value;
+        console.log(name);
+        console.log(password);
+    }
+</script></body>
+ </html>
