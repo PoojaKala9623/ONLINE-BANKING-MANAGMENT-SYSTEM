@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+let product =[{
+    name:"product",
+    discount:60,
+    price:1000,
+    image:"https://tcftechnologys.com/assets/img/TCF_Logo%20(1).jpg"
+}, 
+{
+    name:"product 2",
+    discount:60,
+    price:1000,
+    image:"https://tcftechnologys.com/assets/img/TCF_Logo%20(1).jpg"
+}, 
+{
+    name:"product 3",
+    discount:60,
+    price:1000,
+    image:"https://tcftechnologys.com/assets/img/TCF_Logo%20(1).jpg"
+}]
+for(i=0;i<product.length;i++)
+{
+    console.log(product[i]);
+    document.write(`
+     <h1>${product[i].name}</h1>
+     <h4>${product[i].discount}</h4>
+     <h3>${product[i].price}</h3>
+     <img src="${product[i].image}"/>
+    `)
+
+}
+
+</script>
+</body>
+</html>
