@@ -1,0 +1,9 @@
+http://localhost:5000/api/admins/owner/create
+
+{
+    "name": "admin",
+    "email": "admin@example.com",
+    "password": "admin123"
+}
+
+using postman
