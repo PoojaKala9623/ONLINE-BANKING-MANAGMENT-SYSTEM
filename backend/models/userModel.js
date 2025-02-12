@@ -42,15 +42,8 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: Number,
-      required: [true, "Please Type AN EGY Phone Number!"],
+      required: [true, "Please Type  Phone Number!"],
       unique: true,
-      validate: {
-        validator: function (v) {
-          let regex = new RegExp("^(1)[0-2,5]{1}[0-9]{8}");
-          return regex.test(v) && v.toString().length === 10;
-        },
-        message: "Please Enter A Valid EGY Phone Number!",
-      },
     },
     full_addresse: {
       type: String,
