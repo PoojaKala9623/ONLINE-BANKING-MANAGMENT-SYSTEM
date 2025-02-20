@@ -1,0 +1,14 @@
+user
+vicky@example.us  => username
+Aa@1234567890
+
+owner
+{
+    "name": "adminvignesh",
+    "email": "admin@example.com",
+    "password": "admin123"
+}
+
+admin
+vinothadmin@example.com
+Aa@1234567890

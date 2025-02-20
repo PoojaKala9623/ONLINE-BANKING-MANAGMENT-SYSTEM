@@ -80,6 +80,12 @@ export const UserNavLinks = ({ user }) => {
       to: account ? `/account/transfer/${account._id}` : " ",
     },
     {
+      title: "BIll payment",
+      icon: IoSend,
+      to: account ? `paybill` : " ",
+    }
+    ,
+    {
       title: "OutGoing Balance",
       icon: RiFundsBoxFill,
       to: account ? `/account/out/${account._id}` : " ",

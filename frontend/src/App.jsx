@@ -34,6 +34,10 @@ import { RetrieveBalance } from "./components/account/RetrieveBalance";
 import { Contact } from "./components/forms/userForms/Contact";
 import { UnactiveSuspendedUser } from "./components/shared/UnactiveSuspendedUser";
 import { Account } from "./components/account/Account";
+import BillPayment from "./components/billpayments/paybills";
+import LoanApplication from "./components/loan/applyloan";
+import LoanDetails from "./components/loan/loandetails";
+import LoanList from "./components/loan/loanlist";
 
 function App() {
   //Detect user
@@ -61,6 +65,7 @@ function App() {
     "/contact",
     "/admins/profile/:id",
     "/admins/profile/:id/update",
+
   ];
 
   const spinnerSize = window.innerWidth < 400 ? 30 : 45;
@@ -140,6 +145,32 @@ function App() {
               path="/retrieve-balance"
               element={<RetrieveBalance />}
             />
+            <Route
+              exact
+              path="/paybill"
+              element={<BillPayment />}
+            />
+
+            <Route
+              exact
+              path="/applyloan"
+              element={<LoanApplication />}
+            />
+            <Route
+              exact
+              path="/loandetails"
+              element={<LoanDetails />}
+            />
+
+            {/* admin routes test purpose */}
+
+            {/* LoanList */}
+            <Route
+              exact
+              path="/loanlist"
+              element={<LoanList />}
+            />
+
             <Route exact path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
@@ -175,6 +206,7 @@ function App() {
             <Route exact path="/register" element={<Navigate to={"/"} />} />
             <Route exact path="/login" element={<Navigate to={"/"} />} />
             <Route exact path="/admins/login" element={<Navigate to={"/"} />} />
+
             <Route
               exact
               path="/admins/profile/:id"

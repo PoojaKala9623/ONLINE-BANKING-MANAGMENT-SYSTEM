@@ -38,6 +38,14 @@ app.use("/api/account", accountRoute);
 const accountRequestRoute = require("./routes/accountRequestRoutes");
 app.use("/api/request", accountRequestRoute);
 
+// bill Router
+const billRoute = require("./routes/billroutes");
+app.use("/api/bill", billRoute);
+
+// loan Router
+const loanRoute = require("./routes/loanroutes");
+app.use("/api/loans", loanRoute);
+
 //serve Frontend
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../Frontend/dist")));
