@@ -35,6 +35,7 @@ export const Index = () => {
       <Reviews />
       <Footer />
       <ScrollToTopBtn startAnimation={startAnimation} />
+      
     </>
   );
 };

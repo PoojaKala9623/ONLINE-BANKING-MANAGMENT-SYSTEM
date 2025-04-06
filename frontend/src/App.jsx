@@ -164,12 +164,7 @@ function App() {
 
             {/* admin routes test purpose */}
 
-            {/* LoanList */}
-            <Route
-              exact
-              path="/loanlist"
-              element={<LoanList />}
-            />
+          
 
             <Route exact path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFoundPage />} />
@@ -206,6 +201,12 @@ function App() {
             <Route exact path="/register" element={<Navigate to={"/"} />} />
             <Route exact path="/login" element={<Navigate to={"/"} />} />
             <Route exact path="/admins/login" element={<Navigate to={"/"} />} />
+              {/* LoanList */}
+              <Route
+              exact
+              path="/admins/loanlist"
+              element={<LoanList />}
+            />
 
             <Route
               exact

@@ -23,6 +23,12 @@ export const AdminNavLinks = ({ admin }) => {
       title: "Profile",
       icon: BsFilePersonFill,
       to: `/admins/profile/${admin.id}`,
+    }
+    ,
+    {
+      title: "Loan Management",
+      icon: BsFilePersonFill,
+      to: `/admins/loanlist`,
     },
     {
       title: "Setting",
@@ -63,7 +69,7 @@ export const AdminNavLinks = ({ admin }) => {
           ) : (
             <Link
               to={link.to}
-              className="w-full flex items-center p-2 border-r-4 border-blue-800 rounded shadow bg-blue-200"
+              className="w-full flex items-center p-2 border-r-4 border-blue-800 rounded shadow bg-green-200"
             >
               <link.icon className="text-blue-800" size={22} />
               <span

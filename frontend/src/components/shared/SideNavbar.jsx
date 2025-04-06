@@ -64,7 +64,7 @@ export const SideNavbar = ({ admin = null, user = null }) => {
       {/* Sidebar starts */}
 
       {/* Tablet/desktop Sidebar*/}
-      <div className="w-64 absolute sm:relative bg-slate-50 shadow-lg flex-col justify-between hidden lg:flex ">
+      <div className="w-64 absolute sm:relative bg-red-50 shadow-lg flex-col justify-between hidden lg:flex ">
         <div className="h-screen overflow-y-auto px-8 py-8 sticky top-0 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-blue-400">
           {/* Logo */}
           <Logo />

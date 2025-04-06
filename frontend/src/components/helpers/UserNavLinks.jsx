@@ -83,6 +83,11 @@ export const UserNavLinks = ({ user }) => {
       title: "BIll payment",
       icon: IoSend,
       to: account ? `paybill` : " ",
+    },
+    {
+      title: "Applyloan",
+      icon: IoSend,
+      to: account ? `applyloan` : " ",
     }
     ,
     {

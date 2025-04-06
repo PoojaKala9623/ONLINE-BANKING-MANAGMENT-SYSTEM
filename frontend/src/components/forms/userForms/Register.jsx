@@ -83,7 +83,7 @@ export default function Register() {
   };
 
   return (
-    <div className="block p-6 rounded shadow-lg shadow-black/20 bg-slate-50 w-full mx-auto">
+    <div className="block p-6 rounded shadow-lg shadow-black/20 bg-red-100 w-full mx-auto">
       <Logo />
       <h3 className="flex justify-center items-center text-2xl text-blue-800 font-bold text-center p-2 my-4 rounded shadow bg-blue-200 border-x-4 border-blue-800 select-none">
         <FcCurrencyExchange className="mr-1" size={45} />
@@ -94,7 +94,7 @@ export default function Register() {
         <div className="relative z-0 w-full mb-6">
           <label
             htmlFor="first_name"
-            className="w-full inline-block font-semibold mb-4 p-2 text-gray-800 border-b-4 border-blue-800 rounded shadow bg-blue-200"
+            className="w-full inline-block font-semibold mb-4 p-2 text-gray-800 border-b-4 border-blue-800 rounded shadow bg-blue-200 "
           >
             First name
           </label>
@@ -105,7 +105,7 @@ export default function Register() {
             onChange={(e) =>
               setFormInputs({ ...formInputs, firstName: e.target.value })
             }
-            className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            className="block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
             placeholder="Type Your First Name"
             required
           />
