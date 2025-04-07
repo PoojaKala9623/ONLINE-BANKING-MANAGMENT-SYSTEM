@@ -3,6 +3,7 @@ import axios from "axios";
 import { TextField, Button, MenuItem, Select, InputLabel, FormControl, Box, Typography } from "@mui/material";
 import { url } from "../../config/config";
 import { useSelector } from "react-redux";
+import jsPDF from "jspdf";
 
 const LoanApplication = () => {
   const [loanType, setLoanType] = useState("");
@@ -11,16 +12,14 @@ const LoanApplication = () => {
   const [interestRate, setInterestRate] = useState(""); // Interest rate percentage
   const [emi, setEmi] = useState(null);
 
-  
-       const {
-          account,
-          isError,
-          isLoading: isUserAccountLoading,
-          message,
-        } = useSelector((state) => state.userAccount);
-      
-  
-        console.log(account);
+  const {
+    account,
+    isError,
+    isLoading: isUserAccountLoading,
+    message,
+  } = useSelector((state) => state.userAccount);
+
+  console.log(account);
 
   // Loan Types
   const loanTypes = [
@@ -52,8 +51,8 @@ const LoanApplication = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(url+"api/loans/apply", {
-        userId:account.client_id,
+      const response = await axios.post(url + "api/loans/apply", {
+        userId: account.client_id,
         loanType,
         loanAmount,
         tenure,
@@ -73,10 +72,53 @@ const LoanApplication = () => {
     }
   };
 
+  // Generate Interest Statement PDF
+  const generatePDF = () => {
+    if (!emi || !loanAmount || !tenure || !interestRate || !loanType) {
+      alert("Please fill the form and calculate EMI first.");
+      return;
+    }
+
+    const doc = new jsPDF();
+
+    // Title
+    doc.setFontSize(16);
+    doc.text("Loan Interest Statement", 70, 15);
+
+    // Loan Info
+    doc.setFontSize(12);
+    doc.text(`Loan Type: ${loanType}`, 14, 30);
+    doc.text(`Loan Amount: ₹${loanAmount}`, 14, 38);
+    doc.text(`Interest Rate: ${interestRate}%`, 14, 46);
+    doc.text(`Tenure: ${tenure} months`, 14, 54);
+    doc.text(`Monthly EMI: ₹${emi}`, 14, 62);
+
+    // Table Heading
+    let startY = 75;
+    doc.setFont(undefined, 'bold');
+    doc.text("Month", 14, startY);
+    doc.text("EMI Amount (₹)", 60, startY);
+    doc.setFont(undefined, 'normal');
+
+    // Monthly Payment Rows
+    let y = startY + 8;
+    for (let i = 1; i <= tenure; i++) {
+      doc.text(`${i}`, 14, y);
+      doc.text(`₹${emi}`, 60, y);
+      y += 8;
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+    }
+
+    doc.save("Loan_Interest_Statement.pdf");
+  };
+
   return (
     <Box sx={{ maxWidth: 400, margin: "auto", padding: 3, boxShadow: 3, borderRadius: 2 }}>
       <Typography variant="h5" gutterBottom>Apply for a Loan</Typography>
-      
+
       {/* Loan Type Dropdown */}
       <FormControl fullWidth margin="normal">
         <InputLabel>Loan Type</InputLabel>
@@ -132,6 +174,11 @@ const LoanApplication = () => {
           Estimated EMI: ₹{emi}/month
         </Typography>
       )}
+
+      {/* Download PDF Button */}
+      <Button variant="outlined" color="success" fullWidth sx={{ mt: 2 }} onClick={generatePDF}>
+        Download Interest Statement
+      </Button>
 
       {/* Submit Button */}
       <Button variant="contained" color="primary" fullWidth sx={{ mt: 2 }} onClick={handleSubmit}>
