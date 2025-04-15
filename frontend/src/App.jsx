@@ -38,6 +38,9 @@ import BillPayment from "./components/billpayments/paybills";
 import LoanApplication from "./components/loan/applyloan";
 import LoanDetails from "./components/loan/loandetails";
 import LoanList from "./components/loan/loanlist";
+import LoanDetailsComponent from "./components/loan/myloandetails";
+import TransactionHistory from "./components/account/TransactionHistory";
+import Chatbot from "./components/chatbot/chat";
 
 function App() {
   //Detect user
@@ -83,6 +86,7 @@ function App() {
   return (
     <Router>
       {/* Guest Routes */}
+      <Chatbot/>
       {!user && !admin && (
         <Routes>
           <Route index element={<Index />} />
@@ -150,6 +154,17 @@ function App() {
               path="/paybill"
               element={<BillPayment />}
             />
+            <Route
+              exact
+              path="/my-loandetails"
+              element={<LoanDetailsComponent />}
+            />
+              <Route
+              exact
+              path="/TransactionHistory"
+              element={<TransactionHistory />}
+            />
+            {/*  */}
 
             <Route
               exact
