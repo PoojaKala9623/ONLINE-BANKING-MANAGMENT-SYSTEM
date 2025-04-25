@@ -41,6 +41,9 @@ import LoanList from "./components/loan/loanlist";
 import LoanDetailsComponent from "./components/loan/myloandetails";
 import TransactionHistory from "./components/account/TransactionHistory";
 import Chatbot from "./components/chatbot/chat";
+import ApplyCardForm from "./components/card/applycard";
+import MyCards from "./components/card/mycardDetails";
+import CardTable from "./components/card/cardTable";
 
 function App() {
   //Detect user
@@ -49,7 +52,8 @@ function App() {
   const admin = UseDetectAdmin();
 
   const { info, isLoading } = useSelector((state) => state.userData);
-
+  console.log("User:", user);
+  console.log("Admin:", admin);
   //User And Admin Paths
   const paths = [
     "/profile",
@@ -86,7 +90,7 @@ function App() {
   return (
     <Router>
       {/* Guest Routes */}
-      <Chatbot/>
+      <Chatbot />
       {!user && !admin && (
         <Routes>
           <Route index element={<Index />} />
@@ -159,7 +163,7 @@ function App() {
               path="/my-loandetails"
               element={<LoanDetailsComponent />}
             />
-              <Route
+            <Route
               exact
               path="/TransactionHistory"
               element={<TransactionHistory />}
@@ -177,9 +181,19 @@ function App() {
               element={<LoanDetails />}
             />
 
+            <Route exact path="/ApplyCard" element={<ApplyCardForm />} />
+            <Route exact path="/myCardDetails" element={<MyCards />} />
+
+
+
+
+
+
+
+
             {/* admin routes test purpose */}
 
-          
+
 
             <Route exact path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFoundPage />} />
@@ -216,12 +230,14 @@ function App() {
             <Route exact path="/register" element={<Navigate to={"/"} />} />
             <Route exact path="/login" element={<Navigate to={"/"} />} />
             <Route exact path="/admins/login" element={<Navigate to={"/"} />} />
-              {/* LoanList */}
-              <Route
+            {/* LoanList */}
+            <Route
               exact
               path="/admins/loanlist"
               element={<LoanList />}
             />
+            <Route exact path="/admin/CardTable" element={<CardTable />} />
+
 
             <Route
               exact

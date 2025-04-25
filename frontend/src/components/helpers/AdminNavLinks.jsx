@@ -31,10 +31,21 @@ export const AdminNavLinks = ({ admin }) => {
       to: `/admins/loanlist`,
     },
     {
+      title: "Card Management",
+      icon: BsFilePersonFill,
+      to: `/admin/CardTable`,
+    },
+    
+
+
+    {
       title: "Setting",
       icon: AiFillSetting,
       to: `/admins/profile/${admin.id}/update`,
     },
+
+    
+
     {
       title: "Logout",
       icon: RiLogoutBoxRFill,

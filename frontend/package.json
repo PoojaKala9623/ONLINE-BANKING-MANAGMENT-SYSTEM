@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "dayjs": "^1.11.13",
     "framer-motion": "^12.7.3",
+    "html2pdf.js": "^0.10.3",
     "jsonwebtoken": "^9.0.0",
     "jspdf": "^3.0.1",
     "moment": "^2.29.3",
@@ -28,7 +29,8 @@
     "redux-persist": "^6.0.0",
     "redux-persist-transform-encrypt": "^3.0.1",
     "redux-thunk": "^2.4.1",
-    "vite-plugin-svgr": "^2.2.1"
+    "vite-plugin-svgr": "^2.2.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

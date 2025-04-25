@@ -45,6 +45,10 @@ app.use("/api/bill", billRoute);
 // loan Router
 const loanRoute = require("./routes/loanroutes");
 app.use("/api/loans", loanRoute);
+// card Router
+const cardRoute = require("./routes/cardRoutes");
+app.use("/api/card", cardRoute);
+
 
 //serve Frontend
 if (process.env.NODE_ENV === "production") {
