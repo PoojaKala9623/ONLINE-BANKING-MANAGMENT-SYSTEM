@@ -95,6 +95,22 @@ export const UserNavLinks = ({ user }) => {
       to: account ? `my-loandetails` : " ",
     }
     ,
+    
+
+    {
+      title: "Apply Card",
+      icon: IoSend,
+      to: account ? `ApplyCard` : " ",
+    },
+
+    {
+      title: "my CardDetails",
+      icon: IoSend,
+      to: account ? `myCardDetails` : " ",
+    },
+
+    
+
     {
       title: "TransactionHistory",
       icon: IoSend,

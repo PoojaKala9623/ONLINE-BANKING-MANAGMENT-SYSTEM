@@ -2,6 +2,11 @@ const dayjs = require("dayjs");
 const Account = require("../models/accountModel");
 const loanmodel = require("../models/loanmodel");
 const loanschedule = require("../models/LoanSchedule");
+const { sendadminEmail, sendUserConfirmEmail } = require("../utils/email");
+const User = require("../models/userModel");
+const Admin = require("../models/adminModel");
+const { sendLoanStatusEmail } = require("../utils/email2");
+const { sendEmiPaidEmail } = require("../utils/emil3");
 
 
 const applyloan = async (req, res) => {
@@ -30,7 +35,24 @@ const applyloan = async (req, res) => {
 
         // Save to database
         await loanApplication.save();
+
+        const account = await Account.findOne({client_id:userId})
+        const user = await User.findOne({ accounts: account._id });
+        console.log(user,userId);
+        
+
         console.log(`Loan Application: ${loanType} of ₹${loanAmount} for ${tenure} months at ${interestRate}%`);
+        console.log(user.email);
+        
+       await  sendUserConfirmEmail(user.email,user,loanApplication)
+
+       const admins =  await Admin.find()
+       admins.map(async (admin) => {
+         
+         await sendadminEmail(admin.email,user,loanApplication)
+
+      
+    })
 
         // Respond with success message
         res.json({ message: "Loan application submitted successfully!" });
@@ -51,6 +73,9 @@ const loanUpdateStatus = async (req, res) => {
     try {
         // Find the loan application
         const loan = await loanmodel.findById(loanId);
+        const account = await Account.findOne({client_id:loan.userId})
+
+        const user = await User.findOne({ accounts: account._id });
         if (!loan) {
             return res.status(404).json({ error: "Loan application not found" });
         }
@@ -93,21 +118,30 @@ const loanUpdateStatus = async (req, res) => {
           
               await loanschedule.insertMany(schedule);
 
+              await sendLoanStatusEmail(user.email, { name: user.user_name }, loan, action);
             return res.json({ message: "Loan approved and amount credited successfully!" });
 
             // "Pending", "Approved", "Rejected", "Disbursed","Cancelled"
+          
+
 
         } else if (action === "Rejected") {
             loan.status = "Rejected";
             await loan.save();
+            await sendLoanStatusEmail(user.email, { name: user.user_name }, loan, action);
+
             return res.json({ message: "Loan rejected successfully!" });
 
         } else if (action === "Cancelled") {
             loan.status = "Cancelled";
             await loan.save();
+            await sendLoanStatusEmail(user.email, { name: user.user_name }, loan, action);
+
             return res.json({ message: "Loan application cancelled successfully!" });
 
         } else {
+          await sendLoanStatusEmail(user.email, { name: user.user_name }, loan, action);
+
             return res.status(400).json({ error: "Invalid action. Use 'approve', 'reject', or 'cancel'." });
         }
     } catch (error) {
@@ -190,12 +224,15 @@ const payemi = async (req, res) => {
   
       // 2. Get Loan to fetch userId and EMI amount
       const loan = await loanmodel.findById(emi.loanId); // Assuming loanId exists on EMI
+      const account = await Account.findOne({client_id:loan.userId})
+      const user = await User.findOne({ accounts: account._id });
+
       if (!loan) {
         return res.status(404).json({ message: "Loan not found." });
       }
   
       // 3. Get user's account by userId
-      const account = await Account.findOne({ client_id: loan.userId });
+      // const account = await Account.findOne({ client_id: loan.userId });
       if (!account) {
         return res.status(404).json({ message: "Account not found." });
       }
@@ -221,7 +258,13 @@ const payemi = async (req, res) => {
       await loanschedule.findByIdAndUpdate(emiid, {
         status: "Paid",
       });
+
+      const emipay =await  loanschedule.findById(emiid)
+
+      
   
+     await  sendEmiPaidEmail(user.email,{name:user.user_name},emipay,loan)
+
       return res.status(200).json({ message: "EMI paid successfully." });
     } catch (error) {
       console.error("Payment failed:", error);
@@ -264,10 +307,6 @@ const payemi = async (req, res) => {
       res.status(500).json({ message: "Internal Server Error" });
     }
   };
-
-
-
-
 
 
 
