@@ -57,9 +57,9 @@ export const Transfer = () => {
 
     if (isSuccess) {
       setMsg(
-        `You Have Transfered ${new Intl.NumberFormat("ar-EG", {
+        `You Have Transfered ${new Intl.NumberFormat("en-IN", {
           style: "currency",
-          currency: "EGP",
+          currency:"INR",
         }).format(
           balanceTransfered
         )} To Account ID:- [${receivingId}] Successfully!`
