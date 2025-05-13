@@ -80,7 +80,7 @@ export const UserNavLinks = ({ user }) => {
       to: account ? `/account/transfer/${account._id}` : " ",
     },
     {
-      title: "BIll payment",
+      title: "Bill payment",
       icon: IoSend,
       to: account ? `paybill` : " ",
     },

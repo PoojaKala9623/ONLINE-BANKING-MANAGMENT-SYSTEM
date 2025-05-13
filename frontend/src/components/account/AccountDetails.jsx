@@ -112,7 +112,7 @@ export const AccountDetails = ({ account }) => {
         </p>
         <span className="w-full lg:w-auto text-slate-900 bg-white  px-4 py-2 rounded-md">
           {account.withdraw_logs.length > 0
-            ? newIntl.NumberFormat("en-IN", {
+            ? new Intl.NumberFormat("en-IN", {
               style: "currency",
               currency: "INR",
               }).format(
