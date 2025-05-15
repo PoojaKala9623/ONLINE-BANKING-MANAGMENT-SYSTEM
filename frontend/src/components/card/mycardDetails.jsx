@@ -3,13 +3,14 @@ import axios from 'axios';
 import { Card, CardContent, Typography, Box, CircularProgress, Button } from '@mui/material';
 import html2pdf from 'html2pdf.js';
 
+
 const MyCards = () => {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const userId = '2525500301'; // Make dynamic if needed
     const API_URL = `http://localhost:5000/api/card/user/${userId}`;
-
+  const info = useSelector((state) => state.userData.info);
     useEffect(() => {
         axios.get(API_URL)
             .then(response => {
@@ -97,7 +98,7 @@ const MyCards = () => {
                                         </Box>
 
                                         <Typography variant="body2" mt={4}>
-                                            NAME SURNAME
+                                            NAME  {info.name}
                                         </Typography>
                                     </CardContent>
 
