@@ -2,15 +2,25 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Card, CardContent, Typography, Box, CircularProgress, Button } from '@mui/material';
 import html2pdf from 'html2pdf.js';
+import { useSelector } from "react-redux";
 
 const MyCards = () => {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
+    const {
+        account,
+        isError,
+        isLoading: isUserAccountLoading,
+        message,
+      } = useSelector((state) => state.userAccount);
+    
 
-    const userId = '2525500301'; // Make dynamic if needed
-    const API_URL = `http://localhost:5000/api/card/user/${userId}`;
+    
 
     useEffect(() => {
+        console.log(account)
+        const userId = account?.client_id; // Make dynamic if needed
+    const API_URL = `http://localhost:5000/api/card/user/${userId}`;
         axios.get(API_URL)
             .then(response => {
                 if (response.data && response.data.length > 0) {
