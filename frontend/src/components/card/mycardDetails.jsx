@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 const MyCards = () => {
     const [cards, setCards] = useState([]);
     const [loading, setLoading] = useState(true);
+      const { info, isLoading } = useSelector((state) => state.userData);
+    
     const {
         account,
         isError,
