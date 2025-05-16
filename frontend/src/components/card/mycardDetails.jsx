@@ -110,7 +110,7 @@ const MyCards = () => {
 
                                         <Typography variant="body2" mt={4}>
                                             NAME  {info.name}
-                                        </Typography>
+                                            </Typography>
                                     </CardContent>
 
                                     <Typography
